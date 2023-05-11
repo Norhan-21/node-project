@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 
 mongoose.connect(process.env.mongoConnectionUrl);
 
-import subjectdRouter  from './routes/subjects.js'
+
 
 import departmentRouter from "./routes/departments.js";
 const app = express();
@@ -23,18 +23,15 @@ app.set("views", "./templates");
 
 app.use("/departments", departmentRouter);
 
-app.get("/adminstrator", (req, res) => {
+// app.get("/adminstrator", (req, res) => {
 
-  res.render("adminstrator", { layout: false });
-});
+//   res.render("adminstrator", { layout: false });
+// });
 
-app.get("/adminstrator/tasks", (req, res) => {
+// app.get("/adminstrator/tasks", (req, res) => {
 
-  res.render("adminTasks", { layout: false });
-});
-
-//Subject Feature
-app.use('/subjects',subjectdRouter);
+//   res.render("adminTasks", { layout: false });
+// });
 
 app.listen(process.env.port, () => {
   console.log(
