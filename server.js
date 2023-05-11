@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 
 mongoose.connect(process.env.mongoConnectionUrl);
 
+import subjectdRouter  from './routes/subjects.js'
 
 import departmentRouter from "./routes/departments.js";
 const app = express();
@@ -31,6 +32,9 @@ app.get("/adminstrator/tasks", (req, res) => {
 
   res.render("adminTasks", { layout: false });
 });
+
+//Subject Feature
+app.use('/subjects',subjectdRouter);
 
 app.listen(process.env.port, () => {
   console.log(
