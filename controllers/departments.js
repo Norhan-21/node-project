@@ -37,3 +37,35 @@ export const index = async (req, res) => {
     console.log(singleDepartment);
     res.render("departments/show", { department: singleDepartment });
   };
+
+
+  export const edit = async (req, res) => {
+    const { _id } = req.params;
+    const editFormDepartment = await department
+      .findById(_id).lean(); 
+    res.render("departments/edit",{department: editFormDepartment});
+  };
+
+
+  export const update = async (req, res) => {
+    const { name, code} = req.body;
+    const { _id }= req.params;
+     await department.findByIdAndUpdate(_id, { 
+      $set: {name, code },
+    });
+
+    res.redirect("/departments");
+
+  };
+
+
+export const deleteOne = async(req,res ) =>{
+  const { _id }= req.params;
+  
+  await department.findByIdAndDelete(_id);
+  
+
+  return res.redirect('/departments');
+
+};
+
