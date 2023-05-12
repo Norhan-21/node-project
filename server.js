@@ -1,5 +1,6 @@
 import express from "express";
 import { engine } from "express-handlebars";
+import methodOverride from 'method-override';
 import dotenv from "dotenv";
 dotenv.config();
 import mongoose from "mongoose";
@@ -12,6 +13,8 @@ import departmentRouter from "./routes/departments.js";
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
+
+app.use(methodOverride('_method'));
 
 app.engine("handlebars", engine());
 app.set("view engine", "handlebars");
