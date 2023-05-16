@@ -8,7 +8,8 @@ import mongoose from "mongoose";
 mongoose.connect(process.env.mongoConnectionUrl);
 
 import subjectdRouter  from './routes/subjects.js'
-
+import authRoutes  from './routes/auth.js'
+import stRoutes from './routes/st.js'
 import departmentRouter from "./routes/departments.js";
 const app = express();
 
@@ -32,7 +33,8 @@ app.get("/adminstrator/tasks", (req, res) => {
 
   res.render("adminTasks", { layout: false });
 });
-
+app.use('/',authRoutes);
+app.use('/',stRoutes)
 //Subject Feature
 app.use('/subjects',subjectdRouter);
 

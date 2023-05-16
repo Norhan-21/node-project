@@ -1,0 +1,38 @@
+<h1>Create a new account for student</h1>
+
+<form action="/registerstudent" method="POST">
+
+  <div>
+    <label for="">username</label>
+
+    <input type="text" class="form-control" name="username" />
+  </div>
+
+  <div>
+    <label for="">password</label>
+
+    <input type="password" class="form-control" name="password" />
+  </div>
+  <div>
+    <label for="">academic number</label>
+
+    <input type="number" class="form-control" name="academicnumber" />
+  </div>
+  {{!-- <div>
+    <label for="">subjects</label>
+
+    <select name="subjects" id="" class="form-select">
+       {{#each subjects}}
+           <option value="{{_id}}">{{name}}</option>
+       {{/each}} 
+    </select>
+  </div> --}}
+
+
+
+
+  <div class="mt-3">
+    <button class="btn btn-success" type="submit">register</button>
+  </div>
+
+</form>
