@@ -1,8 +1,9 @@
 import department from "../models/department.js";
+import students from "../models/students.js";
 import subject from "../models/subject.js";
 
 export const index = async(req,res)=>{
-    const subjects = await subject.find({},{ subName: 1 }).lean( );
+    const subjects = await subject.find({doctor:req.doctors._id, student:req.students._id},{ subName: 1 }).lean( );
     res.render('subjects/index', { subjects});
 };
 
@@ -17,6 +18,8 @@ export const store = async(req,res) => {
         subName ,
         subCode ,
         subDepartment,
+        doctor:req.doctors._id,
+        student:req.students._id,
         subPrevious
     });
     
