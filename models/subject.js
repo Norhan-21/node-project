@@ -19,6 +19,11 @@ const subject = new Schema({
         required:false,
         ref:'doctors'
      },
+     student:{
+        type:Schema.Types.ObjectId,
+        required:false,
+        ref:'students'
+     },
     subPrevious: {
         type: String,
         required: false,
