@@ -9,11 +9,7 @@ const doctors = new Schema({
     type:String,
     required:true,
    },
-   subject: {
-      type: Schema.Types.ObjectId,
-      required: false,
-      ref: 'subject'
-  },
+   
    email:{
     type:String,
     required:true,
