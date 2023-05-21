@@ -9,7 +9,7 @@ export const register=async (req,res)=>{
     console.log(username,academicnumber,password);
     const salt = bcrypt.genSaltSync(10);
     const encryptedpassword = bcrypt.hashSync(password, salt);
-    //console.log(encryptedpassword);
-    await doctors.create({username,academicnumber,password:encryptedpassword});
+    console.log(encryptedpassword);
+    await students.create({username,academicnumber,password:encryptedpassword});
     res.send('registered');
   }
