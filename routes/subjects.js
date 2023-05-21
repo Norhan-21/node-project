@@ -13,7 +13,6 @@ router.get('/create',create);
 
 router.post('/',store);
 
-router.get('/:_id', show);
 
 
 export default router; 
