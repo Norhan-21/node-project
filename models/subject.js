@@ -14,15 +14,11 @@ const subject = new Schema({
         required: false,
         ref: 'department'
     },
-    doctor:{
-        type:Schema.Types.ObjectId,
-        required:false,
-        ref:'doctors'
-     },
     subPrevious: {
         type: String,
         required: false,
-    }
+    },
+  
 
 },{ timestamps : true });
 

@@ -3,6 +3,11 @@ import { engine } from "express-handlebars";
 import methodOverride from 'method-override';
 import dotenv from "dotenv";
 dotenv.config();
+
+import cookieParser from "cookie-parser";
+
+
+
 import mongoose from "mongoose";
 
 mongoose.connect(process.env.mongoConnectionUrl);
@@ -11,7 +16,10 @@ import subjectdRouter  from './routes/subjects.js'
 import authRoutes  from './routes/auth.js'
 import stRoutes from './routes/st.js'
 import departmentRouter from "./routes/departments.js";
+import {authentication} from './middleware/authentication.js'
 const app = express();
+
+app.use(cookieParser());
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -36,7 +44,7 @@ app.get("/adminstrator/tasks", (req, res) => {
 app.use('/',authRoutes);
 app.use('/',stRoutes)
 //Subject Feature
-app.use('/subjects',subjectdRouter);
+app.use('/subjects', authentication ,subjectdRouter);
 
 app.listen(process.env.port, () => {
   console.log(
