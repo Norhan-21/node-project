@@ -12,11 +12,13 @@ import mongoose from "mongoose";
 
 mongoose.connect(process.env.mongoConnectionUrl);
 
-import subjectdRouter  from './routes/subjects.js'
-import authRoutes  from './routes/auth.js'
+import subjectdRouter from './routes/subjects.js'
+import authRoutes from './routes/auth.js'
 import stRoutes from './routes/st.js'
 import departmentRouter from "./routes/departments.js";
-import {authentication} from './middleware/authentication.js'
+import adminRoutes from "./routes/adminrout.js";
+import { authentication } from './middleware/authentication.js'
+
 const app = express();
 
 app.use(cookieParser());
@@ -30,7 +32,17 @@ app.set("view engine", "handlebars");
 app.set("views", "./templates");
 
 
+
 app.use("/departments", departmentRouter);
+
+app.get("/home", (req, res) => {
+
+  res.render("home", { layout: false });
+});
+app.get("/adminchoices", (req, res) => {
+
+  res.render("adminchoices", { layout: false });
+});
 
 app.get("/adminstrator", (req, res) => {
 
@@ -41,10 +53,13 @@ app.get("/adminstrator/tasks", (req, res) => {
 
   res.render("adminTasks", { layout: false });
 });
-app.use('/',authRoutes);
-app.use('/',stRoutes)
+
+app.use('/', adminRoutes)
+app.use('/', authRoutes);
+app.use('/', stRoutes)
+
 //Subject Feature
-app.use('/subjects', authentication ,subjectdRouter);
+app.use('/subjects', authentication, subjectdRouter);
 
 app.listen(process.env.port, () => {
   console.log(
