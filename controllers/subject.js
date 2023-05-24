@@ -27,9 +27,37 @@ export const store = async(req,res) => {
 };
 
 export const show = async(req , res) => {
+    const { _id } = req.params;
    
     const singleSubject = await subject.findById(_id).populate('subDepartment').lean();
 
     res.render('subjects/show', {subject: singleSubject} );
 };
 
+
+export const edit = async (req, res) => {
+    const { _id } = req.params;
+    const editFormSubject = await subject
+      .findById(_id).lean(); 
+    res.render("subjects/edit",{department, subject: editFormSubject});
+  };
+
+  export const update = async(req,res) => {
+    const { subName , subCode , subDepartment ,subPrevious } = req.body;
+    const { _id } = req.params;
+    await subject.findByIdAndUpdate(_id, {$set: {subName , subCode , subDepartment ,subPrevious }})
+    
+    res.redirect('/subjects');
+    
+};
+
+
+export const deleteOne = async(req,res ) =>{
+    const { _id }= req.params;
+    
+    await subject.findByIdAndDelete(_id);
+    
+  
+    return res.redirect('/subjects');
+  
+  };
