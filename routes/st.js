@@ -14,4 +14,4 @@ router.get('/studentlog' , studentLoginForm);
 router.post('/studentlog' , studentlog);
 
 
-export default router; 
+export default router;
