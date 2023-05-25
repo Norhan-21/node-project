@@ -18,7 +18,17 @@ const subject = new Schema({
         type: String,
         required: false,
     },
-  
+    doctor: {
+        type: Schema.Types.ObjectId,
+        required: false,
+        ref: 'students'
+    }
+    ,
+    student: {
+        type: Schema.Types.ObjectId,
+        required: false,
+        ref: 'students'
+    }
 
 },{ timestamps : true });
 
