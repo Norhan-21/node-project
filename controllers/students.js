@@ -44,5 +44,5 @@ export const studentlog = async (req, res) => {
         
         
        res.cookie('token' , jwtToken);
-    res.send('logged in');
+    res.send('/subjects');
 };
