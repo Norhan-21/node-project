@@ -3,7 +3,7 @@ import students from "../models/students.js";
 import subject from "../models/subject.js";
 
 export const index = async(req,res)=>{
-    const subjects = await subject.find( ).lean( );
+    const subjects = await subject.find({ doctor: req.user._id},{ subName : 1} ).lean( );
     res.render('subjects/index', { subjects});
 };
 
@@ -19,7 +19,10 @@ export const store = async(req,res) => {
         subCode ,
         subDepartment,
        
-        subPrevious
+        subPrevious,
+         doctor: req.user._id,
+        student: req.user._id,
+        
     });
     
     res.redirect('/subjects');
